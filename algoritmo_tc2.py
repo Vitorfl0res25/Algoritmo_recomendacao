@@ -7,8 +7,6 @@ firebase_admin.initialize_app(cred)
 
 #id_usuario = 
 
-caminho_documento = "usuarios/PYpIqscF0pStYuuU4Y5jwWs62Bb2/projeto_recomendacao/recomendacoes "
-
 db = firestore.client()
 
 colecao_usuarios = db.collection("usuarios")
@@ -24,10 +22,10 @@ saude = dados_usuario.get("Saude")
 social = dados_usuario.get("Social")
 
 valores = {
-    'ambiental': ambiental,
-    'educacional': educacional,
-    'saude': saude,
-    'social': social
+    'Ambiental': ambiental,
+    'Educacional': educacional,
+    'Saude': saude,
+    'Social': social
 }
 
 valores_ordenados = sorted(valores.items(), key=lambda item: item[1], reverse=True)
@@ -37,23 +35,30 @@ if valores_ordenados[1][1] == valores_ordenados[2][1]:
 else:
     escolhido = valores_ordenados[1]
 
-#print(f'Os dois maiores valores são: {valores_ordenados[0][1]} (pertence a {valores_ordenados[0][0]}) e {escolhido[1]} (pertence a {escolhido[0]})')
+print(f'Os dois maiores valores são: {valores_ordenados[0][1]} (pertence a {valores_ordenados[0][0]}) e {escolhido[1]} (pertence a {escolhido[0]})')
 #db.document(caminho_documento).update({"Pmaior": valores_ordenados[0][0]})
 #db.document(caminho_documento).update({"Smaior": escolhido[0]})
 
-primeiro_id = None
-segundo_id = None
-terceiro_id = None
-quarto_id = None
+caminho_documento = "usuarios/PYpIqscF0pStYuuU4Y5jwWs62Bb2/projeto_recomendacao/recomendacao"
+colecao = db.collection("projetos")
 
-recomendacao = db.collection("projetos")
+primeiro_id = "" 
+segundo_id = ""
+terceiro_id = ""
+quarto_id = ""
+
+categoria_1 = valores_ordenados[0][0]
+categoria_2 = escolhido[0]
 
 categorias_procuradas = [valores_ordenados[0][0], escolhido[0]]
 
 for categoria in categorias_procuradas:
-    consulta = colecao.where("nome_do_campo_categoria", '==', categoria).limit(2).stream()
+    consulta = colecao.where("categoria", '==', categoria).limit(2).stream()
 
+    #print(f'Resultados para categoria "{categoria}":')
     for i, documento in enumerate(consulta):
+        #print(f'Documento ID: {documento.id}')
+
         if categoria == valores_ordenados[0][0]:
             if i == 0:
                 primeiro_id = documento.id
@@ -65,8 +70,14 @@ for categoria in categorias_procuradas:
             elif i == 1:
                 quarto_id = documento.id
 
+#print(f'ID 1: {primeiro_id}')
+#print(f'ID 2: {segundo_id}')
+#print(f'ID 3: {terceiro_id}')
+#print(f'ID 4: {quarto_id}')
 
-db.document(caminho_documento).update(primeiro_id)
-db.document(caminho_documento).update(segundo_id)
-db.document(caminho_documento).update(terceiro_id)
-db.document(caminho_documento).update(quarto_id)
+db.document(caminho_documento).update({
+    'primeiro_id': primeiro_id,
+    'segundo_id': segundo_id,
+    'terceiro_id': terceiro_id,
+    'quarto_id': quarto_id
+})
