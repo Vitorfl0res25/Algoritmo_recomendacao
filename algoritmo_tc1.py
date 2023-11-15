@@ -9,22 +9,22 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-#id_usuario = 
-#id_projeto = 
+id_usuario = 
+id_projeto = 
 
-doc_ref_time = firestore.client().document("usuarios/PYpIqscF0pStYuuU4Y5jwWs62Bb2/interacao_projetos/LxRDgSXI8gFIQ9smNazp")
+doc_ref_time = firestore.client().document("usuarios/{id_usuario}/interacao_projetos/{id_projeto}")
 
 doc_time = doc_ref_time.get()
 doc_time = doc_time.to_dict()
 
-caminho_usuario = "usuarios/PYpIqscF0pStYuuU4Y5jwWs62Bb2" # fornecido do app
-caminho_projeto = "projetos/LxRDgSXI8gFIQ9smNazp"
+caminho_usuario = "usuarios/{id_usuario}" # fornecido do app
+caminho_projeto = "projetos/{id_projeto}"
 
 colecao_usuarios = db.collection("usuarios")
 colecao_projetos = db.collection("projetos")
 
-doc_ref = colecao_usuarios.document("PYpIqscF0pStYuuU4Y5jwWs62Bb2")
-doc_ref_projetos = colecao_projetos.document("LxRDgSXI8gFIQ9smNazp")
+doc_ref = colecao_usuarios.document("{id_usuario}")
+doc_ref_projetos = colecao_projetos.document("{id_projeto}")
 
 
 doc_snapshot = doc_ref.get()
@@ -112,7 +112,7 @@ db = firestore.client()
 
 colecao_usuarios = db.collection("usuarios")
 
-doc_ref = colecao_usuarios.document("PYpIqscF0pStYuuU4Y5jwWs62Bb2")
+doc_ref = colecao_usuarios.document("{id_usuario}")
 doc_snapshot = doc_ref.get()
 dados_usuario = doc_snapshot.to_dict()
 
