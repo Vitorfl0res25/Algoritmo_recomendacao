@@ -5,13 +5,13 @@ import random
 cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
 firebase_admin.initialize_app(cred)
 
-#id_usuario = 
+id_usuario = 
 
 db = firestore.client()
 
 colecao_usuarios = db.collection("usuarios")
 
-doc_ref = colecao_usuarios.document("PYpIqscF0pStYuuU4Y5jwWs62Bb2")#fornecido pelo app
+doc_ref = colecao_usuarios.document("{id_usuario}")#fornecido pelo app
 
 doc_snapshot = doc_ref.get()
 
@@ -35,20 +35,17 @@ if valores_ordenados[1][1] == valores_ordenados[2][1]:
 else:
     escolhido = valores_ordenados[1]
 
-print(f'Os dois maiores valores são: {valores_ordenados[0][1]} (pertence a {valores_ordenados[0][0]}) e {escolhido[1]} (pertence a {escolhido[0]})')
+#print(f'Os dois maiores valores são: {valores_ordenados[0][1]} (pertence a {valores_ordenados[0][0]}) e {escolhido[1]} (pertence a {escolhido[0]})')
 #db.document(caminho_documento).update({"Pmaior": valores_ordenados[0][0]})
 #db.document(caminho_documento).update({"Smaior": escolhido[0]})
 
-caminho_documento = "usuarios/PYpIqscF0pStYuuU4Y5jwWs62Bb2/projeto_recomendacao/recomendacao"
+caminho_documento = "usuarios/{id_usuario}/projeto_recomendacao/recomendacao"
 colecao = db.collection("projetos")
 
 primeiro_id = "" 
 segundo_id = ""
 terceiro_id = ""
 quarto_id = ""
-
-categoria_1 = valores_ordenados[0][0]
-categoria_2 = escolhido[0]
 
 categorias_procuradas = [valores_ordenados[0][0], escolhido[0]]
 
