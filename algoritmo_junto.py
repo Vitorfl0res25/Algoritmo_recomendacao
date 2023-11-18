@@ -4,7 +4,7 @@ from datetime import datetime
 import spacy
 nlp = spacy.load('pt_core_news_sm')
 
-cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
+cred = credentials.Certificate("")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
