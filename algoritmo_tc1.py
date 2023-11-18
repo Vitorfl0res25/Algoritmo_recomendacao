@@ -9,8 +9,8 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-id_usuario = "PYpIqscF0pStYuuU4Y5jwWs62Bb2"
-id_projeto = "LxRDgSXI8gFIQ9smNazp"
+id_usuario = ""
+id_projeto = ""
 
 doc_ref_time = firestore.client().document(f"usuarios/{id_usuario}/interacao_projetos/{id_projeto}")
 
