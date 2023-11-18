@@ -4,27 +4,27 @@ from datetime import datetime
 import spacy
 nlp = spacy.load('pt_core_news_sm')
 
-cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
+cred = credentials.Certificate("")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-id_usuario = 
-id_projeto = 
+id_usuario = "PYpIqscF0pStYuuU4Y5jwWs62Bb2"
+id_projeto = "LxRDgSXI8gFIQ9smNazp"
 
-doc_ref_time = firestore.client().document("usuarios/{id_usuario}/interacao_projetos/{id_projeto}")
+doc_ref_time = firestore.client().document(f"usuarios/{id_usuario}/interacao_projetos/{id_projeto}")
 
 doc_time = doc_ref_time.get()
 doc_time = doc_time.to_dict()
 
-caminho_usuario = "usuarios/{id_usuario}" # fornecido do app
-caminho_projeto = "projetos/{id_projeto}"
+caminho_usuario = f"usuarios/{id_usuario}" 
+caminho_projeto = f"projetos/{id_projeto}"
 
 colecao_usuarios = db.collection("usuarios")
 colecao_projetos = db.collection("projetos")
 
-doc_ref = colecao_usuarios.document("{id_usuario}")
-doc_ref_projetos = colecao_projetos.document("{id_projeto}")
+doc_ref = colecao_usuarios.document(id_usuario)
+doc_ref_projetos = colecao_projetos.document(id_projeto)
 
 
 doc_snapshot = doc_ref.get()
@@ -94,8 +94,6 @@ diferenca_segundos = (dt_saida - dt_entrada).total_seconds()
 
 #print(f"primeiro: {entrada}, segundo: {saida}, diferenca: {diferenca_segundos}")
 
-recomendacao = ""
-
 janela_superior = tempo_gasto_total + 2
 janela_inferior = tempo_gasto_total - 2
 
@@ -112,7 +110,7 @@ db = firestore.client()
 
 colecao_usuarios = db.collection("usuarios")
 
-doc_ref = colecao_usuarios.document("{id_usuario}")
+doc_ref = colecao_usuarios.document(f"{id_usuario}")
 doc_snapshot = doc_ref.get()
 dados_usuario = doc_snapshot.to_dict()
 
@@ -208,4 +206,6 @@ elif recomendacao == "neutro":
     db.document(caminho_usuario).update({categoria: firestore.Increment(0)})
   elif categoria == "Social":
     db.document(caminho_usuario).update({categoria: firestore.Increment(0)})
+
+
 
