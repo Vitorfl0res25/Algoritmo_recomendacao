@@ -217,11 +217,7 @@ if (ambiental > 10 and saude > 10) or \
    (saude > 10 and educacional > 10) or \
    (social > 10 and educacional > 10):
 
-    cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
-
-    colecao_usuarios = db.collection("usuarios")
-
-    doc_ref = colecao_usuarios.document("{id_usuario}")#fornecido pelo app
+    doc_ref = colecao_usuarios.document("{id_usuario}")
 
     doc_snapshot = doc_ref.get()
 
