@@ -2,16 +2,16 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import random
 
-cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
+cred = credentials.Certificate("")
 firebase_admin.initialize_app(cred)
 
-id_usuario = 
+id_usuario = ""
 
 db = firestore.client()
 
 colecao_usuarios = db.collection("usuarios")
 
-doc_ref = colecao_usuarios.document("{id_usuario}")#fornecido pelo app
+doc_ref = colecao_usuarios.document(id_usuario)
 
 doc_snapshot = doc_ref.get()
 
