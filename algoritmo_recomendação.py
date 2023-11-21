@@ -300,4 +300,3 @@ def sua_funcao():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
