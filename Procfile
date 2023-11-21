@@ -1,1 +1,1 @@
-gunicorn algoritmo_recomendação:app
+web: gunicorn algoritmo_recomendação:app
