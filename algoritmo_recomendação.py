@@ -7,23 +7,22 @@ import random
 app = Flask(__name__)
 
 # Configuração do Firebase
-cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
-initialize_app(cred)
-
-db = firestore.client()
-
 nlp = spacy.load('pt_core_news_sm')
 
 @app.route('/sua_api', methods=['POST'])
 def sua_funcao():
     # Obter os valores dos parâmetros da solicitação
+    cred = credentials.Certificate(request.json.get('chave'))
     id_usuario = request.json.get('id_usuario')
     id_projeto = request.json.get('id_projeto')
-
+    
     # Se um dos valores não for fornecido, retornar um erro
     if id_usuario is None or id_projeto is None:
         return jsonify({'error': 'Ambos os valores (id_usuario e id_projeto) são necessários'}), 400
+    
+    initialize_app(cred)
 
+    db = firestore.client()
     doc_ref_time = firestore.client().document(f"usuarios/{id_usuario}/interacao_projetos/{id_projeto}")
 
     doc_time = doc_ref_time.get()
