@@ -1,1 +1,1 @@
-web : gunicorn algoritmo_junto:app
+web: gunicorn algoritmo_junto:app
