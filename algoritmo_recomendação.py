@@ -7,12 +7,16 @@ import random
 app = Flask(__name__)
 
 # Configuração do Firebase
+cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
+initialize_app(cred)
+
+db = firestore.client()
+
 nlp = spacy.load('pt_core_news_sm')
 
 @app.route('/sua_api', methods=['POST'])
 def sua_funcao():
     # Obter os valores dos parâmetros da solicitação
-    cred = credentials.Certificate(request.json.get('chave'))
     id_usuario = request.json.get('id_usuario')
     id_projeto = request.json.get('id_projeto')
     
