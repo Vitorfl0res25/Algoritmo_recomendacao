@@ -3,8 +3,7 @@ from firebase_admin import credentials, firestore, initialize_app
 from datetime import datetime
 import spacy
 import random
-
-
+from werkzeug.utils import url_quote
 
 app = Flask(__name__)
 
