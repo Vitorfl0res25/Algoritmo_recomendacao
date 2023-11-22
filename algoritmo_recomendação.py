@@ -3,15 +3,14 @@ from firebase_admin import credentials, firestore, initialize_app
 from datetime import datetime
 import spacy
 import random
-from werkzeug.utils import url_quote
 
 app = Flask(__name__)
 
 # Configuração do Firebase
-cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
-initialize_app(cred)
+#cred = credentials.Certificate("banco-tijuba-firebase-adminsdk-3khg4-33686be01d.json")
+#nitialize_app(cred)
 
-db = firestore.client()
+#db = firestore.client()
 
 nlp = spacy.load('pt_core_news_sm')
 
@@ -20,7 +19,12 @@ def sua_funcao():
     # Obter os valores dos parâmetros da solicitação
     id_usuario = request.json.get('id_usuario')
     id_projeto = request.json.get('id_projeto')
+    cred = credentials.Certificate(str(request.json.get('chave')))
     
+    
+    initialize_app(cred)
+
+    db = firestore.client()
     # Se um dos valores não for fornecido, retornar um erro
     if id_usuario is None or id_projeto is None:
         return jsonify({'error': 'Ambos os valores (id_usuario e id_projeto) são necessários'}), 400
