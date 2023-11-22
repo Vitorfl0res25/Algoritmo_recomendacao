@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 #db = firestore.client()
 
-nlp = spacy.load('pt_core_news_sm')
+nlp = spacy.load('pt_core_news_lg')
 
 @app.route('/sua_api', methods=['POST'])
 def sua_funcao():
