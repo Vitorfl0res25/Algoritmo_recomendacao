@@ -4,4 +4,5 @@ spacy==3.0.6
 spacy-legacy==3.0.6
 https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-3.0.0/pt_core_news_sm-3.0.0.tar.gz
 gunicorn==20.1.0
+Werkzeug==1.0.1
 
