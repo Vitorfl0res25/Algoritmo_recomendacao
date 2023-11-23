@@ -80,7 +80,7 @@ for token in descricao_nlp:
 
 #print(f"descricao: {contagem_palavras_descricao}")
 
-tempo_gasto_total = ((contagem_palavras_nome * 225)+(contagem_palavras_descricao * 225)+(contagem_palavras_cadastro * 225)+(contagem_palavras_categoria * 225)+(contagem_palavras_dt * 225))/1000
+tempo_gasto_total = (contagem_palavras_nome + contagem_palavras_descricao + contagem_palavras_cadastro + contagem_palavras_categoria + contagem_palavras_dt)/250
 tempo_gasto_total = int(tempo_gasto_total)
 #print(f"tempo de leitura da pagina: {tempo#_gasto_total}")
 
